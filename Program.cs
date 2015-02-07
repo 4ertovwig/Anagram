@@ -35,7 +35,7 @@ namespace Anagramms
                 #region Main Logic
                 foreach (Int32 sizeOfWords in Methods.CreateObject.ReadInput(path).Select(s => s.Length).Distinct().OrderBy(s => s))
                 {
-                    var fromDictionary = File.ReadLines(path).Distinct().Where(s => s.Length == sizeOfWords);
+                    var fromDictionary = File.ReadLines(path).Where(s => s.Length == sizeOfWords).Distinct();
                     var groups1 = from string words in fromDictionary
                                   group words by string.Concat(words.OrderBy(x => x)) into cwords
                                   group cwords by cwords.Count() into d
